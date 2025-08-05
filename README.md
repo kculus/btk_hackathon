@@ -130,24 +130,24 @@ max_memory={0: "4GB"}  # Memory limiti
 
 ### 4. **Sistem Dosyaları**
 
-#### �� **Core Files**
+#### **Core Files**
 - `advanced_rag.py`: Ana RAG sistemi
 - `advanced_rag_chat_fixed.py`: Chatbot implementasyonu
 - `advanced_rag_system/`: Eğitilmiş model ve index dosyaları
 
-#### �� **Data Files**
+#### **Data Files**
 - `mat1.json` - `mat8.json`: Sınıf bazlı matematik içerikleri
 - `mat1konu.json` - `mat8konu.json`: Konu anlatımları
 - `mat8_lgs.json`: LGS hazırlık içerikleri
 
-#### �� **Web Interface**
+#### **Web Interface**
 - `app.py`: Flask web uygulaması
 - `templates/`: HTML şablonları
 - `static/`: CSS, JS, ses dosyaları
 
 ### 5. **Performans Özellikleri**
 
-#### �� **Hız Optimizasyonları**
+#### **Hız Optimizasyonları**
 - **FAISS Index**: Hızlı doküman arama
 - **GPU Acceleration**: CUDA ile hızlandırma
 - **Memory Management**: Agresif memory yönetimi
