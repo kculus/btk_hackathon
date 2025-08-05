@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="static/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+</head>
+<body>
+    <!-- Sekme Menüsü -->
+    <nav class="navbar" role="navigation" aria-label="main navigation" style="background-color: #ff6f61;">
+        <div class="navbar-menu">
+            <div class="navbar-start">
+                <a href="#" class="navbar-item is-tab active" id="chatbot-tab">Chatbot</a>
+                <a href="#" class="navbar-item is-tab" id="game-tab">Oyun</a>
+                <a href="#" class="navbar-item is-tab" id="story-tab">Hikaye</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Chatbot İçeriği -->
+    <section class="section tab-content active" id="chatbot-content">
+        <div class="container">
+            <!-- Üst Başlık ve Butonlar -->
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                <div style="display: flex; gap: 20px; align-items: center;">
+                    <h2 class="title" style="font-family: 'Comic Sans MS', sans-serif; color: #ff6f61; margin: 0;">
+                        Chatbot
+                    </h2>
+                    <button class="button is-info" id="konu-anlatim-button">
+                        <i class="fas fa-book"></i> Matematik Konu Anlatım Botu
+                    </button>
+                    <button class="button is-warning" id="back-to-chatbot-button" style="display: none;">
+                        <i class="fas fa-arrow-left"></i> Chatbota Geri Dön
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Ana İçerik Alanı -->
+            <div style="display: flex; justify-content: space-between; gap: 20px;">
+                <!-- Sol Taraf: Chat Alanı -->
+                <div style="width: 60%;">
+                    <!-- Chatbot İçeriği -->
+                    <div id="chatbot-section" class="content-section">
+                        <div id="chatbox" class="box" style="height: 400px; overflow-y: auto; margin-bottom: 20px;">
+                            <!-- Chat mesajları buraya gelecek -->
+                        </div>
+                        <div class="field">
+                            <label class="label" style="font-family: 'Comic Sans MS', sans-serif; color: #42a5f5;">Mesajınızı Girin</label>
+                            <div class="control">
+                                <input class="input" type="text" id="user_input" placeholder="Mesajınız">
+                            </div>
+                        </div>
+                        <div class="buttons" style="margin-top: 10px;">
+                            <button class="button is-primary" id="send_button">Gönder</button>
+                            <button class="button is-secondary" id="voice_button">
+                                <i class="fas fa-microphone"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Konu Anlatım Botu İçeriği -->
+                    <div id="konu-anlatim-section" class="content-section" style="display: none;">
+                        <div id="konu-chatbox" class="box" style="height: 400px; overflow-y: auto; margin-bottom: 20px;">
+                            <!-- Konu anlatım chat mesajları buraya gelecek -->
+                        </div>
+                        <div class="field">
+                            <label class="label" style="font-family: 'Comic Sans MS', sans-serif; color: #42a5f5;">Mesajınızı Girin</label>
+                            <div class="control">
+                                <input class="input" type="text" id="konu-user-input" placeholder="Mesajınız">
+                            </div>
+                        </div>
+                        <div class="buttons" style="margin-top: 10px;">
+                            <button class="button is-primary" id="konu-send-button">Gönder</button>
+                            <button class="button is-secondary" id="konu-voice-button">
+                                <i class="fas fa-microphone"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sağ Taraf: Matematik Konuları ve Notlar -->
+                <div style="width: 35%; display: flex; flex-direction: column; gap: 20px;">
+                    <!-- Matematik Konuları -->
+                    <div class="box">
+                        <h3 class="title is-4" style="font-family: 'Comic Sans MS', sans-serif; color: #ff6f61; margin-bottom: 15px;">
+                            Matematik Konuları
+                        </h3>
+                        <button class="button is-warning is-fullwidth" id="matematik-konulari-button">
+                            <i class="fas fa-list"></i> Tüm Konuları Göster
+                        </button>
+                        <div id="konular-container" style="margin-top: 15px; display: none;">
+                            <!-- Konular JavaScript ile buraya eklenecek -->
+                        </div>
+                    </div>
+                    
+                    <!-- Notlar Bölümü -->
+                    <div class="box" style="flex: 1;">
+                        <h3 class="title is-4" style="font-family: 'Comic Sans MS', sans-serif; color: #ff6f61;">Notlarım</h3>
+                        <textarea id="notes" class="textarea" placeholder="Notlarınızı buraya yazın..." style="height: 200px;"></textarea>
+                        <div class="buttons" style="margin-top: 10px;">
+                            <button class="button is-link" id="voice_note_button">
+                                <i class="fas fa-microphone"></i> Sesli Not
+                            </button>
+                            <button class="button is-success" id="save_pdf_button">
+                                PDF Olarak Kaydet
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Oyun İçeriği (Iframe ile oyun.html dosyasını yükleme) -->
+    <section class="section tab-content" id="game-content" style="display: none;">
+        <div class="container">
+            <iframe src="/oyun" style="width: 100%; height: 500px; border: none;"></iframe>
+        </div>
+    </section>
+
+    <!-- Hikaye İçeriği -->
+    <section class="section tab-content" id="story-content" style="display: none;">
+        <div class="container">
+            <iframe src="/hikaye" style="width: 100%; height: 500px; border: none;"></iframe>
+        </div>
+    </section>
+
+    <script src="static/main.js"></script>
+</body>
+</html>

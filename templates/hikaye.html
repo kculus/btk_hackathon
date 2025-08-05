@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hikaye Oluştur</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            font-family: 'Comic Sans MS', sans-serif;
+            background-color: #f0f8ff;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+        }
+        .story-box {
+            background-color: #f5f5f5;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 1.1em;
+            height: 350px;
+            overflow-y: auto;
+            text-align: left;
+            margin-top: 10px;
+            position: relative;
+        }
+        .pdf-button {
+            display: none;
+            font-size: 1em;
+            padding: 10px;
+            background-color: #20B2AA;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        .options-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .option-box {
+            background-color: #e3f2fd;
+            padding: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            flex: 1;
+            text-align: center;
+        }
+        .option-box:hover {
+            background-color: #bbdefb;
+        }
+        .prompt-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .prompt-container input[type="text"] {
+            padding: 10px;
+            font-size: 1em;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+        .start-button {
+            font-size: 1em;
+            padding: 10px;
+            background-color: #FF6F61;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        /* Ses düğmeleri */
+        .audio-controls {
+            position: absolute;
+            top: 10px;
+            right: -50px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .audio-controls button {
+            background-color: #20B2AA;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 35px;
+            height: 35px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+        
+        /* Karşılama ekranı */
+        .welcome-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.5); /* Şeffaf arka plan */
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            padding-left: 10%;
+            color: white;
+            z-index: 1000;
+            cursor: pointer;
+        }
+
+        /* Tavşan görseli */
+        .character-image {
+            width: 250px;
+            margin-right: 20px;
+        }
+
+        /* Baloncuk şeklindeki konuşma kutusu */
+        .speech-bubble {
+            background-color: white;
+            color: #333;
+            padding: 15px 20px;
+            border-radius: 25px;
+            max-width: 300px;
+            font-size: 18px;
+            position: relative;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+            text-align: left;
+        }
+
+        /* Balonun ucundaki ok */
+        .speech-bubble:after {
+            content: "";
+            position: absolute;
+            left: -15px;
+            top: 50%;
+            transform: translateY(-50%);
+            border-width: 15px;
+            border-style: solid;
+            border-color: transparent white transparent transparent;
+        }
+    </style>
+</head>
+<body>
+    <!-- Karşılama Ekranı -->
+    <div class="welcome-screen" id="welcomeScreen" onclick="hideWelcomeScreen()">
+        <!-- Tavşan Görseli -->
+        <img src="static/images/tavsan.png" alt="Tavşan" class="character-image">
+        
+        <!-- Konuşma Balonu -->
+        <div class="speech-bubble">
+            Hey, dostum! 👋 Hoş geldin! Burası hayal gücünün sınırlarını zorlayabileceğin bir yer! ✨
+            Burada kendi hikayeni yazabilir, maceranın kahramanı olabilirsin! 🐰📖
+            Başlamak için sabırsızlanıyor musun? Hadi, seni bekliyorum! 🚀✨
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Kullanıcıdan başlangıç girişi alma alanı -->
+        <div class="prompt-container" id="promptContainer">
+            <input type="text" id="customPrompt" placeholder="Kendi hikaye başlangıcınızı yazın...">
+            <button class="start-button" onclick="startWithPrompt()">Başlat</button>
+        </div>
+
+        <!-- Hikaye metnini gösteren alan -->
+        <div id="storyText" class="story-box"></div>
+
+        <!-- Ses kontrol düğmeleri -->
+        <div class="audio-controls">
+            <button id="playButton" onclick="playText()">🔊</button>
+            <button id="pauseButton" onclick="pauseText()">🔇</button>
+        </div>
+
+        <!-- Hikaye öneri kutuları -->
+        <div id="story-options" class="options-container"></div>
+
+        <!-- PDF olarak kaydet butonu -->
+        <button class="pdf-button" id="pdfButton" onclick="downloadPDF()">PDF Olarak Kaydet</button>
+    </div>
+
+    <!-- story.js dosyasını dahil ediyoruz -->
+    <script src="static/story.js"></script>
+
+    <script>
+    let speechSynthesisUtterance;
+    let selectedVoice = null;
+
+    // Karşılama ekranını gizlemek için fonksiyon
+    function hideWelcomeScreen() {
+        document.getElementById("welcomeScreen").style.display = "none";
+    }
+
+    // Tüm sesleri konsola yazdırma ve uygun sesi seçme
+    function setVoice() {
+        const voices = window.speechSynthesis.getVoices();
+        
+        console.log("Tarayıcıda mevcut olan sesler:");
+        voices.forEach(voice => console.log(`${voice.name} (${voice.lang})`));
+
+        selectedVoice = voices.find(voice => 
+            voice.lang === "tr-TR" && (voice.name.toLowerCase().includes("female") || voice.name.toLowerCase().includes("woman") || voice.name.toLowerCase().includes("turkish"))
+        );
+        
+        if (!selectedVoice) {
+            selectedVoice = voices.find(voice => voice.lang === "tr-TR");
+        }
+    }
+
+    window.speechSynthesis.onvoiceschanged = setVoice;
+
+    function playText() {
+        const storyText = document.getElementById("storyText").innerText;
+
+        if (!speechSynthesisUtterance) {
+            speechSynthesisUtterance = new SpeechSynthesisUtterance(storyText);
+            if (selectedVoice) {
+                speechSynthesisUtterance.voice = selectedVoice;
+            }
+            speechSynthesisUtterance.rate = 1;
+        }
+
+        speechSynthesisUtterance.text = storyText;
+        window.speechSynthesis.speak(speechSynthesisUtterance);
+    }
+
+    function pauseText() {
+        window.speechSynthesis.cancel();
+    }
+    </script>
+</body>
+</html>

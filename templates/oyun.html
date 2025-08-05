@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hızlı Matematik Oyunu</title>
+    <link rel="stylesheet" href="/static/style.css"> <!-- Style.css dosyasını ekledik -->
+    <style>
+        /* Tam ekran kapsama için temel ayarlar */
+        html, body {
+            height: 100%;
+            margin: 0;
+            overflow: hidden;
+            font-family: 'Comic Sans MS', sans-serif;
+        }
+
+        /* Tam ekran karşılama mesajı */
+        .welcome-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.5); /* Daha şeffaf siyah arka plan */
+            display: flex;
+            justify-content: flex-start; /* Tavşanı sola çekmek için */
+            align-items: center;
+            padding-left: 10%; /* Tavşanı biraz daha sola yerleştirmek için boşluk ekledik */
+            color: white;
+            z-index: 1000;
+        }
+
+        /* Tavşan görseli */
+        .character-image {
+            width: 250px; /* Tavşan görselini daha da büyüttük */
+            margin-right: 20px;
+        }
+
+        /* Baloncuk şeklindeki konuşma kutusu */
+        .speech-bubble {
+            background-color: white;
+            color: #333;
+            padding: 15px 20px;
+            border-radius: 25px;
+            max-width: 300px;
+            font-size: 18px;
+            position: relative;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+            text-align: left;
+        }
+
+        /* Balonun ucundaki ok */
+        .speech-bubble:after {
+            content: "";
+            position: absolute;
+            left: -15px;
+            top: 50%;
+            transform: translateY(-50%);
+            border-width: 15px;
+            border-style: solid;
+            border-color: transparent white transparent transparent;
+        }
+    </style>
+</head>
+<body>
+    <!-- Karşılama Ekranı -->
+    <div class="welcome-screen" id="welcomeScreen">
+        <!-- Tavşan Görseli -->
+        <img src="{{ url_for('static', filename='images/tavsan.png') }}" alt="Tavşan" class="character-image">
+        
+        <!-- Konuşma Balonu -->
+        <div class="speech-bubble">
+            Merhaba küçük matematikçi! 🎉 Bu oyunda hızlıca matematik sorularını çözüp puan toplayabilirsin! 🧠✨
+            Bakalım kim daha hızlı? Hazır mısın? 🐰🚀
+        </div>
+    </div>
+
+    <!-- Oyun İçeriği -->
+    <h1>Hızlı Matematik Oyunu</h1>
+    <div id="question">Soru burada olacak</div>
+    <div class="game-over-message" id="game-over-message"></div>
+    <div id="high-score-container" class="hidden"></div>
+    <div class="score-display" id="score-display"></div>
+    <div class="lives-display" id="lives-display"></div>
+
+    <script src="/static/game.js"></script>
+    <script>
+        // Karşılama ekranını kapatma işlevi
+        const welcomeScreen = document.getElementById('welcomeScreen');
+        const mainContent = document.querySelector('.main-content');
+
+        // Ekrana tıklandığında veya herhangi bir tuşa basıldığında karşılama ekranını kapat
+        function hideWelcomeScreen() {
+            welcomeScreen.style.display = 'none';
+        }
+
+        // Tıklama olayını dinle
+        welcomeScreen.addEventListener('click', hideWelcomeScreen);
+
+        // Klavyeden herhangi bir tuşa basıldığında kapat
+        document.addEventListener('keydown', hideWelcomeScreen);
+    </script>
+</body>
+</html>

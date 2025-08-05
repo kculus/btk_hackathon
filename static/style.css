@@ -1,0 +1,345 @@
+/* Genel Arka Plan ve Font Ayarları */
+/* Oyunun Başlangıcında Gizli Olan Elemanlar */
+#question, #high-score-container, .game-over-message, .score-display, .lives-display {
+    display: none; /* Başlangıçta görünmez yapıyoruz */
+}
+
+button#restartButton {
+    display: none; /* Başlangıçta gizli */
+    font-size: 1.5em;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #42a5f5;
+    color: #fff;
+    border-radius: 10px;
+    cursor: pointer;
+    border: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+body {
+    background-color: #f0f8ff; /* Açık mavi arka plan */
+    font-family: 'Comic Sans MS', sans-serif; /* Çocuk dostu font */
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    overflow: auto;
+}
+
+/* Chatbox Sol Hizalama */
+#chatbox, #konu-chatbox {
+    width: 60%; /* Genişliği %60 olarak ayarladık */
+    background-color: #e3f2fd;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 16px;
+    color: #333;
+    height: 400px;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 0;
+    margin-left: 0; /* Sol tarafa hizaladık */
+    margin-top: 20px;
+}
+
+/* Input ve Buton Kutusu */
+.field {
+    width: 60%; /* Chatbox genişliği ile uyumlu hale getirdik */
+    margin-left: 0; /* Sola hizaladık */
+    margin-top: 10px; /* Chatbox ile input arasında boşluk bıraktık */
+}
+
+/* Konu anlatım notları container */
+#konu-notes-container {
+    width: 35%;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    padding: 15px;
+    margin-left: 20px; /* Sağ tarafa biraz boşluk bırakır */
+}
+
+/* Mesaj Giriş Alanı */
+.input {
+    width: 100%; /* Input genişliği tam */
+    border-radius: 8px;
+}
+.restartButton {
+    display: none; /* Yeniden Başla butonunu başlangıçta gizliyoruz */
+}
+/* Butonlar İçin Stil */
+.buttons {
+    display: flex;
+    gap: 10px; /* Butonlar arasında boşluk */
+    margin-top: 10px;
+}
+
+.button.is-primary {
+    width: auto; /* Gönder buton genişliği içeriğe göre ayarlanacak */
+    background-color: #ff6f61;
+    color: white;
+    border: none;
+    font-weight: bold;
+    border-radius: 8px;
+    float: left; /* Butonu sola yasla */
+}
+
+.button.is-secondary {
+    width: auto; /* Ses buton genişliği içeriğe göre ayarlanacak */
+    background-color: #42a5f5; /* Mikrofon butonu için mavi renk */
+    color: white;
+    border: none;
+    font-weight: bold;
+    border-radius: 8px;
+    float: left; /* Butonu sola yasla */
+}
+
+/* Mesaj Balonları Stili */
+p {
+    font-size: 18px; /* Daha büyük yazı */
+    margin: 5px 0;
+}
+
+strong {
+    color: #42a5f5; /* Bot ve kullanıcı isimlerine renk */
+}
+
+/* Kullanıcı Mesajı Stili */
+.user-message {
+    align-self: flex-end;
+    background-color: #003366; /* Lacivert renk */
+    color: white;
+    padding: 10px 15px;
+    border-radius: 15px;
+    max-width: 70%;
+    word-wrap: break-word;
+    text-align: right;
+}
+
+/* Bot Mesajı Stili */
+.bot-message {
+    align-self: flex-start;
+    background-color: #ffffff; /* Beyaz renk */
+    color: #333;
+    padding: 10px 15px;
+    border-radius: 15px;
+    max-width: 70%;
+    word-wrap: break-word;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+button#restartButton {
+    display: none; /* Başlangıçta gizli */
+    font-size: 1.5em;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #42a5f5;
+    color: #fff;
+    border-radius: 10px;
+    cursor: pointer;
+    border: none;
+}
+
+/* Yazıyor animasyonu için stil */
+.typing-indicator {
+    align-self: flex-start;
+    background-color: #ffeeba; /* Açık sarı renk */
+    color: #333;
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-style: italic;
+    max-width: 70%;
+    word-wrap: break-word;
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+.button.is-info {
+    background-color: #209cee; /* Başlat için mavi */
+    color: white;
+    border: none;
+    font-weight: bold;
+    border-radius: 8px;
+}
+
+.button.is-warning {
+    background-color: #ffdd57; /* Durdur için sarı */
+    color: white;
+    border: none;
+    font-weight: bold;
+    border-radius: 8px;
+}
+
+.play-audio, .stop-audio {
+    margin-left: 5px;
+    font-size: 0.8rem; /* Butonları biraz daha küçük yap */
+}
+
+#notes-container, #konu-notes-container {
+    width: 35%;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    padding: 15px;
+    margin-left: 20px; /* Sağ tarafa biraz boşluk bırakır */
+}
+
+/* Kaydedilen Notlar */
+#saved-notes p {
+    padding: 5px;
+    background-color: #e3f2fd;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+/* Navbar Sekme Menüsü */
+.navbar {
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-item.is-tab {
+    font-family: 'Comic Sans MS', sans-serif;
+    color: #ffffff;
+    font-weight: bold;
+    padding: 10px 15px;
+    transition: background-color 0.3s;
+    cursor: pointer;
+}
+
+.navbar-item.is-tab:hover {
+    background-color: #ff8a65; /* Sekmelerin üzerine gelince renk değişikliği */
+}
+
+.navbar-item.is-tab.active {
+    background-color: #ff7043; /* Aktif sekme rengi */
+    border-bottom: 2px solid #ff7043; /* Alt çizgi ile vurgu */
+}
+
+/* Tab Content Stilleri */
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f8ff; /* Arka plan rengini buradan ayarlayın */
+}
+
+.section {
+    min-height: calc(100vh - 60px); /* Sekme menüsünün yüksekliğini çıkartarak ayarlıyoruz */
+}
+
+/* Hızlı Matematik Oyunu Stilleri */
+#question {
+    font-size: 2em;
+    margin-top: 20px;
+}
+
+#high-score-container {
+    font-size: 1.8em;
+    color: #000;
+    text-align: center;
+    margin-top: 20px;
+    border: 5px solid #FFD700;
+    padding: 20px;
+    border-radius: 20px;
+    background-image: radial-gradient(circle, #FFDD00, #FFAA00, #FF5500);
+    width: fit-content;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.game-over-message {
+    color: red;
+    font-size: 1.5em;
+    margin-top: 10px;
+}
+
+.score-display, .lives-display {
+    font-size: 1.2em;
+    margin-top: 5px;
+}
+
+.answer {
+    display: inline-block;
+    width: 100px;
+    height: 50px;
+    line-height: 50px;
+    font-size: 1.5em;
+    background-color: #42a5f5;
+    color: #fff;
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: center;
+    position: absolute;
+}
+
+/* Matematik Konuları Stilleri */
+#konular-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 30px;
+    padding: 20px;
+}
+
+.sinif-card {
+    background: linear-gradient(135deg, #ff6f61, #ff8a65);
+    border-radius: 15px;
+    padding: 20px;
+    margin: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    min-width: 300px;
+    max-width: 400px;
+    transition: transform 0.3s ease;
+}
+
+.sinif-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+.sinif-card h3 {
+    color: white;
+    font-family: 'Comic Sans MS', sans-serif;
+    font-size: 1.5em;
+    margin-bottom: 15px;
+    text-align: center;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.sinif-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sinif-card li {
+    background: rgba(255,255,255,0.9);
+    margin: 8px 0;
+    padding: 10px;
+    border-radius: 8px;
+    font-family: 'Comic Sans MS', sans-serif;
+    font-size: 0.9em;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.sinif-card li:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    background: rgba(255,255,255,1);
+}
