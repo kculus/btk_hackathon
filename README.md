@@ -136,6 +136,7 @@ max_memory={0: "4GB"}  # Memory limiti
 - `advanced_rag_system/`: Eğitilmiş model ve index dosyaları
 
 #### **Data Files**
+- **📊 Veri Seti Linki**: [AdvancedRagMatQuestions Dataset](https://huggingface.co/datasets/yagiz1323/AdvancedRagMatQuestions/tree/main)
 - `mat1.json` - `mat8.json`: Sınıf bazlı matematik içerikleri
 - `mat1konu.json` - `mat8konu.json`: Konu anlatımları
 - `mat8_lgs.json`: LGS hazırlık içerikleri
