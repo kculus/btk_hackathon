@@ -26,6 +26,19 @@ Bu proje, **Hugging Face'teki `neuralwork/gemma-2-9b-it-tr`** modelini baz alır
 
 Bu sayede öğrenciler, eğlenerek öğrenme deneyimi yaşar.
 
+📖 Etkileşimli Hikaye Üretimi
+- Projede yer alan AI destekli hikaye oluşturma modülü, kullanıcının yaratıcılığını teşvik eden interaktif bir yapıya sahiptir.
+- Kullanıcı, kendi hikaye başlangıcını yazabilir veya sistemin sunduğu rastgele 2 başlangıçtan birini seçebilir.
+- Hikaye, 10 adımdan oluşur. Her adımda kullanıcıya 2 farklı seçenek sunulur ve seçimlere göre hikaye yönlenir.
+- Son adımda, yapay zekâ tarafından oluşturulmuş 2 alternatif son gösterilir.
+- Tamamlanan hikaye:
+- Sesli olarak dinlenebilir (TTS teknolojisiyle)
+- PDF formatında indirilebilir
+- Hikaye üretimi sürecinde, metin oluşturmak için Gemini API kullanılmıştır.
+
+Bu sistem, öğrencilere hem okuma-yazma becerisi hem de karar verme pratiği kazandırmayı amaçlar.
+
+
 ## 📂 Proje Yapısı Özeti
 
 | Dosya/Klasör | Açıklama |
