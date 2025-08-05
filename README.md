@@ -231,7 +231,7 @@ Bu sistem, öğrencilere hem okuma-yazma becerisi hem de karar verme pratiği ka
 |--------------|----------|
 | `train_qlora_gemma_final_aggressive.py` | Gemma-2‑9B‑IT‑TR modeli için agresif parametrelerle LoRA üzerinden fine‑tuning scripti |
 | `test_qlora_final.py` | Eğitilmiş modelin soru-cevap yeteneklerini test eden betik |
-| `advanced_rag_fixed.py` | Embedding — Retriever — Response Generation hattını içeren RAG pipeline |
+| `advanced_rag_fixed.py`, `advanced_rag.py` | Embedding — Retriever — Response Generation hattını içeren RAG pipeline |
 | `advanced_rag_chat_fixed.py` | RAG chatbot versiyonu; kullanıcı mesajı alıp cevap üretir |
 | `app.py`, `app4.py` | Flask tabanlı sohbet uygulama arayüzü |
 | `requirements_qlora.txt` | Model eğitimi ve inference için gerekli kütüphaneler |
