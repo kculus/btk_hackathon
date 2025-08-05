@@ -11,10 +11,20 @@ Bu proje, **Hugging Face'teki `neuralwork/gemma-2-9b-it-tr`** modelini baz alır
 - Model, Türkçe'de daha iyi konuşma ve mantıksal çözümleme yeteneklerine sahiptir.
 
 - Bu model LoRa ile fine tune edildi ve konu anlatımı yapabilen chatbot oluşturuldu. Bu aşamada kullanılan veri seti ve oluşan modelin linki aşağıda yer almaktadır.
-  -Model linki: https://huggingface.co/yagiz1323/EducationalChatbot/tree/main
- -Model için kullanılan veri seti: https://huggingface.co/datasets/yagiz1323/FinetuningTurkishMat/tree/main
+- Model linki: https://huggingface.co/yagiz1323/EducationalChatbot/tree/main
+- Model için kullanılan veri seti: https://huggingface.co/datasets/yagiz1323/FinetuningTurkishMat/tree/main
 
 ---
+
+🎮 Oyunlaştırılmış Matematik Deneyimi
+- Proje, sadece konu anlatımı ve sohbet ile sınırlı kalmaz; aynı zamanda etkileşimli bir matematik oyunu da sunar.
+
+- Kullanıcıya ekranda sorular gelir, doğru yanıt verdikçe zorluk seviyesi artar.
+- Cevaplar farklı lokasyonlarda yer alır; hız ve dikkat önemlidir.
+- Doğru yanıtlarla puan kazanılır, zor sorular daha fazla puan kazandırır.
+- Arka planda çalan müzikler ve ses efektleri, tamamen AI ile üretilmiştir.
+
+Bu sayede öğrenciler, eğlenerek öğrenme deneyimi yaşar.
 
 ## 📂 Proje Yapısı Özeti
 
