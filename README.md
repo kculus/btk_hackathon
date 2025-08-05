@@ -131,7 +131,7 @@ max_memory={0: "4GB"}  # Memory limiti
 ### 4. **Sistem Dosyaları**
 
 #### **Core Files**
-- **🧠 Eğitilmiş model ve index dosyaları Linki**: 
+- **🧠 Eğitilmiş model ve index dosyaları Linki**: [AdvancedRagSystemFiles Dataset](https://mega.nz/folder/5Jw1xR6Y#ZjmVueMOEhEjlhJ86hB6xQ)
 - `advanced_rag.py`: Ana RAG sistemi
 - `advanced_rag_chat_fixed.py`: Chatbot implementasyonu
 - `advanced_rag_system/`: Eğitilmiş model ve index dosyaları
