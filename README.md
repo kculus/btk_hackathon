@@ -131,6 +131,7 @@ max_memory={0: "4GB"}  # Memory limiti
 ### 4. **Sistem Dosyaları**
 
 #### **Core Files**
+- **🧠 Eğitilmiş model ve index dosyaları Linki**: 
 - `advanced_rag.py`: Ana RAG sistemi
 - `advanced_rag_chat_fixed.py`: Chatbot implementasyonu
 - `advanced_rag_system/`: Eğitilmiş model ve index dosyaları
